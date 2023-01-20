@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
+    <p><b>IT BLOG</b> - одна з лідируючих платформ, що дозволяє ділитись та розповсюджувати найсвіжіші новини з усього світу. Кожен день наша команда робить усе можливе, щоб надати можливість обговорювати та ділитись новинами в сфері ІТ. Саме тут ви можете знайти статті стосовно технологій, які є трендом у всьому світі.</p>
+    <p>Тож реєструйся зараз і насолоджуйся!</p>
 
-    <code><?= __FILE__ ?></code>
+    <!-- <code><?= __FILE__ ?></code> -->
 </div>
