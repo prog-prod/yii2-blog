@@ -7,7 +7,6 @@ use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
-use yii\helpers\Url;
 
 
 AppAsset::register($this);
@@ -31,7 +30,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Yii::g
 
 <?= $this->render('_header');?>
 <main id="main" class="flex-shrink-0" role="main">
-    <div class="container">
+    <div class="container pt-3">
         <?php if (!empty($this->params['breadcrumbs'])): ?>
             <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
         <?php endif ?>
