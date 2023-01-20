@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 /**
  * TagController implements the CRUD actions for Tag model.
  */
-class TagController extends DefaultController
+class TagController extends AppAdminController
 {
     /**
      * @inheritDoc

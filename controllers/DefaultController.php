@@ -47,6 +47,11 @@ class DefaultController extends Controller
             $menuItems[] = ['label' => 'Signup', 'url' => ['/register']];
             $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
         } else {
+             if(\Yii::$app->getUser()->identity->hasAdminPanelAccess()) {
+                 $menuItems[] =  ['label' => 'Admin Panel', 'url' => ['/admin/index']];
+             }
+
+
             $menuItems[] = '<li class="nav-item">'
                 . Html::beginForm(['/logout'], 'post', ['id' => 'logout']) . Html::endForm()
                 . '<a href="javascript:void(0)" class="nav-link" onclick="$(\'#logout\').submit()">Logout (' . \Yii::$app->user->identity->username . ')</a>'

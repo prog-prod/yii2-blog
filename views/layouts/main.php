@@ -28,7 +28,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Yii::g
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<?= $this->render('_header');?>
+<?= $this->render('_header', [ 'menuItems' => $this->context->menu_items ]);?>
+
 <main id="main" class="flex-shrink-0" role="main">
     <div class="container pt-3">
         <?php if (!empty($this->params['breadcrumbs'])): ?>

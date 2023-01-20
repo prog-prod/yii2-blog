@@ -9,6 +9,44 @@ use Yii;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
+    const ROLE_READER = 1;
+    const ROLE_AUTHOR = 5;
+    const ROLE_ADMIN = 10;
+
+
+    public static function roles()
+    {
+        return [
+            self::ROLE_READER => Yii::t('app', 'Reader'),
+            self::ROLE_ADMIN => Yii::t('app', 'Admin'),
+            self::ROLE_AUTHOR => Yii::t('app', 'Author'),
+        ];
+    }
+
+    public function hasAdminPanelAccess(): bool
+    {
+        return $this->isAdmin() || $this->isAuthor();
+    }
+    public function getRoleName(int $id)
+    {
+        $list = self::roles();
+        return $list[$id] ?? null;
+    }
+
+    public function isAdmin(): bool
+    {
+        return ($this->role == self::ROLE_ADMIN);
+    }
+
+    public function isAuthor(): bool
+    {
+        return ($this->role == self::ROLE_AUTHOR);
+    }
+
+    public function isReader(): bool
+    {
+        return ($this->role == self::ROLE_READER);
+    }
 
     public static function tableName()
     {
@@ -103,7 +141,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -116,5 +154,17 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public static function isUserAdmin($username): bool
+    {
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+
     }
 }

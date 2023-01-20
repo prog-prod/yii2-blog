@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
-class ArticleController extends DefaultController
+class ArticleController extends AppAdminController
 {
     /**
      * @inheritDoc

@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 /**
  * CommentController implements the CRUD actions for Comment model.
  */
-class CommentController extends DefaultController
+class CommentController extends AppAdminController
 {
     /**
      * @inheritDoc
