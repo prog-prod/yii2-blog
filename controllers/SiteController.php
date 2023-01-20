@@ -10,13 +10,12 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends DefaultController
 {
     /**
      * {@inheritdoc}
