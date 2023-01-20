@@ -2,12 +2,12 @@
 
 namespace app\modules\admin\controllers;
 
-use yii\web\Controller;
+use \app\controllers\DefaultController;
 
 /**
  * Default controller for the `admin` module
  */
-class DefaultController extends Controller
+class IndexController extends DefaultController
 {
     /**
      * Renders the index view for the module

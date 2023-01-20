@@ -48,7 +48,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '<action>' => 'site/<action>'
+                '<action>' => 'site/<action>',
+                '<module:w+>/<action>' => '<module:admin+>/index/<action>'
             ],
         ],
     ],
