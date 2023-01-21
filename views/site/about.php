@@ -22,9 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
 						</li>
 					</ul>
 				</div>
-				<img src="images/author-full.jpg" class="img-fluid w-100 mb-4 rounded-lg" alt="author">
+				<!-- <img src="images/author-full.jpg" class="img-fluid w-100 mb-4 rounded-lg" alt="author"> -->
+                <img src="images/about_banner.jpg" style="max-width: 60%;" class="img-fluid w-100 mb-4 rounded-lg" alt="author">
 				<div class="content">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Condimentum in urna justo elit turpis risus vitae viverra enim. Augue quis vitae in non nisi, posuere ultrices tempus. Feugiat consequat suspendisse laoreet vitae enim adipiscing cursus. Duis nunc vitae tincidunt sed nibh id. Egestas erat consequat, ornare etiam donec faucibus. Lorem ut enim nunc, senectus adipiscing sed. Lobortis commodo aliquet pulvinar molestie faucibus diam. Semper porttitor justo, et dictum</p>
+					<p>Відомо, що cучасний перioд розвитку цивiлiзованого суспільства характеризує прoцеc iнфoрматизацiї. Інформацiйнi технологiї - це oдин iз cучасних cпоcобiв cпiлкування, головними перевагами якого є загальнoдoступнicть. Індустрія інформаційних технологій в Україні набирає все більших обертів.</p>
+    <p><b>IT BLOG</b> - одна з лідируючих платформ, що дозволяє ділитись та розповсюджувати найсвіжіші новини з усього світу. Кожен день наша команда робить усе можливе, щоб надати можливість обговорювати та ділитись новинами в сфері ІТ. Саме тут ви можете знайти статті стосовно технологій, які є трендом у всьому світі.</p>
+    <p>Тож реєструйся зараз і насолоджуйся!</p>
 					<p>Faucibus duis urna, consequat morbi imperdiet pulvinar. Mauris vitae sed aliquet eu tincidunt id. Nulla leo eget erat vel pharetra. Morbi nullam morbi non purus, augue. Massa cras odio ante cursus a mauris. Volutpat faucibus feugiat feugiat euismod congue ridiculus. Et ipsum euismod nulla et aenean diam duis. Sem molestie est mauris sit. Et eleifend odio</p>
 					<div class="quote"> <i class="ti-quote-left"></i>
 						<div>
