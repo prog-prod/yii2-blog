@@ -9,9 +9,9 @@ $formatter = \Yii::$app->formatter;
 <article class="row mb-5">
     <div class="col-12">
         <div class="post-slider">
-            <img loading="lazy" src="images/post/post-6.jpg" class="img-fluid" alt="post-thumb">
-            <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
-            <img loading="lazy" src="images/post/post-3.jpg" class="img-fluid" alt="post-thumb">
+            <?php foreach($article->getImages() as $image):?>
+                <img loading="lazy" src="images/post/<?=$image?>" class="img-fluid" alt="post-thumb">
+            <?php endforeach;?>
         </div>
     </div>
     <div class="col-12 mx-auto">
@@ -31,6 +31,6 @@ $formatter = \Yii::$app->formatter;
                 </li>
             <?php endif?>
         </ul>
-        <p><?= $article->description ? Html::encode($article->description) : $article->getShortContent()?></p> <a href="post-elements.html" class="btn btn-outline-primary">Переглянути</a>
+        <p><?= $article->description ? Html::encode($article->description) : $article->getShortContent()?></p> <a href="<?=Url::to(['article/view', 'id' => $article->id])?>" class="btn btn-outline-primary">Переглянути</a>
     </div>
 </article>

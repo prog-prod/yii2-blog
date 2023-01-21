@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\ArticleSearch;
 use app\models\Category;
 use app\models\PasswordResetRequestForm;
 use app\models\RegistrationForm;
@@ -69,7 +70,13 @@ class SiteController extends DefaultController
      */
     public function actionIndex()
     {
-        $articles = Article::find()->orderBy(['views' => SORT_DESC])->limit(7)->all();
+        $params = $this->request->get();
+        if(empty($params)){
+            $articles = Article::find()->orderBy(['views' => SORT_DESC])->limit(7)->all();
+        } else {
+            $searchModel = new ArticleSearch;
+            $articles = $searchModel->search($params)->query->all();
+        }
         $latest_articles = Article::find()->orderBy(['id' => SORT_DESC])->limit(3)->all();
         $tags = Tag::find()->all();
         $categories = Category::find()->all();

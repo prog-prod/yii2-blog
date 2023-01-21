@@ -45,6 +45,19 @@ class ArticleSearch extends Article
         if($user_id) {
             $query->andFilterWhere(['user_id' => $user_id]);
         }
+        if(isset($params['tag'])){
+            $query->joinWith(['tags']);
+            $query->andFilterWhere(['tag.id' => $params['tag']]);
+        }
+        if(isset($params['s'])){
+            $query->joinWith(['tags']);
+            $query->andFilterWhere(['like', 'article.title', $params['s']]);
+            $query->orFilterWhere(['like', 'article.content', $params['s']]);
+        }
+        if(isset($params['category'])){
+            $query->joinWith(['category']);
+            $query->andFilterWhere(['category.id' => $params['category']]);
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

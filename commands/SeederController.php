@@ -34,6 +34,19 @@ class SeederController extends Controller
             'email' => 'author2@example.com',
         ],
     ];
+
+    private array $post_images = [
+        'post-1.jpg',
+        'post-2.jpg',
+        'post-3.jpg',
+        'post-4.jpg',
+        'post-5.jpg',
+        'post-6.jpg',
+        'post-7.jpg',
+        'post-8.jpg',
+        'post-9.jpg',
+        'post-10.jpg',
+    ];
     private array $categories = [
         'Кібербезпека',
         'Електричні новини',
@@ -129,7 +142,7 @@ class SeederController extends Controller
        for ($i=0;$i<$countArticles;$i++) {
            $article = new Article();
            $article->user_id = $authors[array_rand($authors)]->id;
-
+           $article->image = join(',', $this->faker->randomElements($this->post_images,$this->faker->numberBetween(0,4)));
            $article->category_id = $categories[array_rand($categories)]->id;
            $article->title = $this->faker->sentence($this->faker->numberBetween(3,7));
            $article->content = $this->faker->text(1000);
