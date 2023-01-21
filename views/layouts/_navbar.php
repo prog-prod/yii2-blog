@@ -18,7 +18,7 @@ use yii\bootstrap5\NavBar;
         <div class="collapse navbar-collapse text-center" id="navigation">
             <?= Nav::widget([
                 'options' => ['class' => 'navbar-nav ml-auto'],
-                'items' => $this->context->menu_items
+                'items' => $items
             ]); ?>
         </div>
         <!-- search -->

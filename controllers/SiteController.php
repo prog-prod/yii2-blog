@@ -144,11 +144,13 @@ class SiteController extends DefaultController
     }
 
     public function actionAddAdmin() {
-        $model = User::find()->where(['username' => 'admin'])->one();
+        $model = User::find()->where(['role' => User::ROLE_ADMIN])->one();
+
         if (empty($model)) {
             $user = new User();
             $user->username = 'admin';
             $user->email = 'admin@example.com';
+            $user->role = $user::ROLE_ADMIN;
             $user->setPassword('admin');
             $user->generateAuthKey();
             if ($model = $user->save()) {
