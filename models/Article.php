@@ -24,6 +24,17 @@ use Yii;
  */
 class Article extends \yii\db\ActiveRecord
 {
+
+    public function beforeSave($insert) {
+        $formatter = \Yii::$app->formatter;
+
+        if ($this->isNewRecord) {
+            $this->createdAt = $formatter->asDatetime('now','Y-MM-dd H:mm:ss');
+        }
+
+        return parent::beforeSave($insert);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -38,10 +49,9 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'user_id', 'title', 'createdAt'], 'required'],
+            [['category_id', 'user_id', 'title', 'content'], 'required'],
             [['category_id', 'user_id', 'views'], 'integer'],
             [['description'], 'string'],
-            [['createdAt'], 'safe'],
             [['content'], 'string'],
             [['title', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
@@ -63,7 +73,6 @@ class Article extends \yii\db\ActiveRecord
             'description' => 'Description',
             'image' => 'Image',
             'views' => 'Views',
-            'createdAt' => 'Created At',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\controllers\DefaultController;
 use app\models\User;
 use app\models\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -27,6 +28,19 @@ class UserController extends AppAdminController
                         'delete' => ['POST'],
                     ],
                 ],
+                'access'=> [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                $user = \Yii::$app->user->getIdentity();
+                                return $user->isAdmin();
+                            }
+                        ]
+                    ]
+                ]
             ]
         );
     }

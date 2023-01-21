@@ -30,7 +30,7 @@ class TagArticle extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tag_id', 'article_id'], 'required'],
+//            [['tag_id', 'article_id'], 'required'],
             [['tag_id', 'article_id'], 'integer'],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::class, 'targetAttribute' => ['article_id' => 'id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::class, 'targetAttribute' => ['tag_id' => 'id']],
