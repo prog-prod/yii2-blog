@@ -22,7 +22,7 @@ class m230120_202705_add_role_column extends Migration
     {
         echo "m230120_202705_add_role_column cannot be reverted.\n";
 
-        return false;
+        return true;
     }
 
     /*

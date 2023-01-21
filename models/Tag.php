@@ -49,8 +49,20 @@ class Tag extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTagArticles()
+    public function getTagArticles(): \yii\db\ActiveQuery
     {
         return $this->hasMany(TagArticle::class, ['tag_id' => 'id']);
     }
+
+    /**
+     * Gets query for [[Articles]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles(): \yii\db\ActiveQuery
+    {
+        return $this->hasMany(Article::class, ['id' => 'article_id'])
+            ->viaTable('tag_article',[ 'tag_id' => 'id']);
+    }
+
 }

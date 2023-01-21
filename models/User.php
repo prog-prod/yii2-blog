@@ -167,4 +167,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         }
 
     }
+
+    public function getArticles()
+    {
+        return $this->hasMany(Article::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
 }

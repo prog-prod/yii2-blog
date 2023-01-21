@@ -1,5 +1,6 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -33,6 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'first_name',
             'last_name',
             'username',
+            [
+                'attribute' => 'role',
+                'value' => User::roles()[$model->role]
+            ],
             'email:email',
             'password_hash',
             'password_reset_token',

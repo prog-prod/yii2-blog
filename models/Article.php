@@ -12,6 +12,7 @@ use Yii;
  * @property int $user_id
  * @property string $title
  * @property string|null $description
+ * @property string|null $content
  * @property string|null $image
  * @property int $views
  * @property string $createdAt
@@ -41,6 +42,7 @@ class Article extends \yii\db\ActiveRecord
             [['category_id', 'user_id', 'views'], 'integer'],
             [['description'], 'string'],
             [['createdAt'], 'safe'],
+            [['content'], 'string'],
             [['title', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -57,6 +59,7 @@ class Article extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'user_id' => 'User ID',
             'title' => 'Title',
+            'content' => 'Content',
             'description' => 'Description',
             'image' => 'Image',
             'views' => 'Views',
@@ -89,9 +92,20 @@ class Article extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTagArticles()
+    public function getTagArticles(): \yii\db\ActiveQuery
     {
         return $this->hasMany(TagArticle::class, ['article_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Tag]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::class, ['id' => 'tag_id'])
+            ->viaTable('tag_article', ['article_id' => 'id']);
     }
 
     /**

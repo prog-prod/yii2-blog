@@ -18,6 +18,7 @@ class m230120_170844_create_article_table extends Migration
             'user_id' => $this->integer()->notNull(),
             'title' => $this->string()->notNull(),
             'description' => $this->text()->null(),
+            'content' => $this->text()->null(),
             'image' => $this->string()->null(),
             'views' => $this->integer()->notNull()->defaultValue(0),
             'createdAt' => $this->dateTime()->notNull(),

@@ -16,7 +16,7 @@ class m230120_170938_create_comment_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'article_id' => $this->integer()->notNull(),
-            'comment_id' => $this->integer()->notNull(),
+            'comment_id' => $this->integer()->null(),
             'text' => $this->text()->null(),
             'datetime' => $this->dateTime()->notNull(),
             'delete' => $this->boolean(),

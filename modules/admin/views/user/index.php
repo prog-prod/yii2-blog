@@ -33,13 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'first_name',
             'last_name',
             'username',
+            [
+                'attribute' => 'role',
+                'value' => function ($model) {
+                        return User::roles()[$model->role];
+                }
+            ],
             'email:email',
-            //'password_hash',
-            //'password_reset_token',
-            //'auth_key',
-            //'avatar',
-            //'created_at',
-            //'updated_at',
+            'avatar',
+            'created_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
