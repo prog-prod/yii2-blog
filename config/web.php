@@ -23,6 +23,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+//            'loginUrl' => 'admin/auth/login'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -48,7 +49,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '<action>' => 'site/<action>'
+                '<action>' => 'site/<action>',
+                '<module:w+>/<action>' => '<module:admin+>/index/<action>'
             ],
         ],
     ],

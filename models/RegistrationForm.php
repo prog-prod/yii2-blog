@@ -49,7 +49,9 @@ class RegistrationForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        $user->save(false);
+
+        return $user;
     }
 
 }
