@@ -4,7 +4,6 @@
 
 /** @var string $content */
 
-use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
@@ -54,16 +53,8 @@ $this->title = 'Dashboard';
         <?= $this->render('_sidebar', ['items' => $this->context->menu_items]); ?>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div class="chartjs-size-monitor">
-                <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                </div>
-                <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                </div>
-            </div>
+
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <?= Alert::widget() ?>
                 <h1 class="h2"><?= $this->title ?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
@@ -75,7 +66,7 @@ $this->title = 'Dashboard';
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?php endif ?>
-
+            <?= Alert::widget() ?>
             <?= $content ?>
         </main>
     </div>

@@ -38,10 +38,13 @@ class ArticleSearch extends Article
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $user_id = null)
     {
         $query = Article::find();
 
+        if($user_id) {
+            $query->andFilterWhere(['user_id' => $user_id]);
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

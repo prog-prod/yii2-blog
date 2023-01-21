@@ -28,11 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'user_id',
-            'article_id',
-            'comment_id',
+            [
+                'attribute' => 'user_id',
+                'label' => 'User',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->user->username, ['user/view/?id='.$model->id]);
+                }
+            ],
+            [
+                'attribute' => 'article_id',
+                'label' => 'Article',
+                'format' => 'raw',
+                'value'=> function ($model) {
+                    return Html::a($model->article->title, ['article/view/?id='.$model->id]);
+                },
+            ],
+            [
+                'attribute' => 'comment_id',
+                'label' => 'Comment',
+                'format' => 'raw',
+                'value'=> function ($model) {
+                    return $model->comment ? Html::a($model->comment->id, ['comment/view/?id='.$model->id]) : null;
+                },
+            ],
             'text:ntext',
             //'datetime',
             //'delete',

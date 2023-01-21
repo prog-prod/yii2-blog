@@ -28,15 +28,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'category_id',
-            'user_id',
-            'title',
+            [
+                    'attribute' => 'title',
+                    'format' => 'raw',
+                    'value'=> function ($model) {
+                        return Html::a($model->title, ['article/view/?id='.$model->id]);
+                      },
+            ],
+            [
+                'attribute' => 'category_id',
+                'label' => 'Category',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->category->name, ['category/view/?id='.$model->category->id]);
+                }
+            ],
+            [
+                'attribute' => 'user_id',
+                'label' => 'User',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->user->username, ['category/view/?id='.$model->user->id]);
+                }
+            ],
+            'content',
             'description:ntext',
-            //'image',
-            //'views',
-            //'createdAt',
+            'image',
+            [
+                'attribute' => 'user_id',
+                'label' => 'User',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return "<img width=50 src='/images/post/".($model->image ? $model->image : $this->context->default_article_img)."' >";
+                }
+            ],
+            'views',
+            'createdAt',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Article $model, $key, $index, $column) {
