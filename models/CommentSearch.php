@@ -38,9 +38,13 @@ class CommentSearch extends Comment
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $user_id)
     {
         $query = Comment::find();
+
+        if($user_id) {
+            $query->andFilterWhere(['user_id' => $user_id]);
+        }
 
         // add conditions that should always apply here
 

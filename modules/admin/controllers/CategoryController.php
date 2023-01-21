@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\controllers\DefaultController;
 use app\models\Category;
 use app\models\CategorySearch;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -25,6 +26,27 @@ class CategoryController extends AppAdminController
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                    ],
+                ],
+                'access' => [
+                    'class' => \yii\filters\AccessControl::className(),
+                    'only' => ['create', 'update', 'delete'],
+                    'rules' => [
+                        // deny all POST requests
+                        [
+                            'allow' => false,
+                            'verbs' => ['POST']
+                        ],
+                        // allow authenticated users
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                $user = \Yii::$app->user->getIdentity();
+                                return $user->isAdmin();
+                            }
+                        ],
+                        // everything else is denied
                     ],
                 ],
             ]

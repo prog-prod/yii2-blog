@@ -39,8 +39,11 @@ class CommentController extends AppAdminController
     public function actionIndex()
     {
         $searchModel = new CommentSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
+        if(\Yii::$app->getUser()->identity->isAuthor()){
+            $dataProvider = $searchModel->search($this->request->queryParams, \Yii::$app->getUser()->id);
+        } else {
+            $dataProvider = $searchModel->search($this->request->queryParams);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

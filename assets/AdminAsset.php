@@ -18,5 +18,11 @@ class AdminAsset extends AssetBundle
         'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
         'js/bootstrap.bundle.min.js',
     ];
-
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap5\BootstrapAsset'
+    ];
+    public $jsOptions = array(
+        'position' => \yii\web\View::POS_HEAD
+    );
 }

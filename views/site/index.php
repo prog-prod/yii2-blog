@@ -4,50 +4,155 @@
 
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
+<section class="section">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+            <div class="col-lg-8  mb-5 mb-lg-0">
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-6.jpg" class="img-fluid" alt="post-thumb">
+                            <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
+                            <img loading="lazy" src="images/post/post-3.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-elements.html">Elements That You Can Use To Create A New Post On This Template.</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i>
+                                <a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 15, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Photography </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a>
+                            </li>
+                        </ul>
+                        <p>Heading example Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for heading 1 and use ###### for heading 6. Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p> <a href="post-elements.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-1.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Photography </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-1.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-2.jpg" class="img-fluid" alt="post-thumb">
+                            <img loading="lazy" src="images/post/post-4.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-2.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Photobooth </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Booth </a> ,<a href="#!" class="ml-1">Image </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-2.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-3.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-2.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Videography </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Video </a> ,<a href="#!" class="ml-1">Image </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-2.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-4.jpg" class="img-fluid" alt="post-thumb">
+                            <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-1.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Four seasone </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Seasone </a>
+                                ,<a href="#!" class="ml-1">New </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-1.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12">
+                        <div class="post-slider">
+                            <img loading="lazy" src="images/post/post-5.jpg" class="img-fluid" alt="post-thumb">
+                        </div>
+                    </div>
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-1.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Newyork city </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">City </a> ,<a href="#!" class="ml-1">Photo </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-1.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+                <article class="row mb-5">
+                    <div class="col-12 mx-auto">
+                        <h3><a class="post-title" href="post-details-2.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
+                        <ul class="list-inline post-meta mb-4">
+                            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John Doe</a>
+                            </li>
+                            <li class="list-inline-item">Date : March 14, 2020</li>
+                            <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Newyork city </a>
+                            </li>
+                            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">City </a> ,<a href="#!" class="ml-1">Photo </a>
+                            </li>
+                        </ul>
+                        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</p> <a href="post-details-2.html" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+            <aside class="col-lg-4">
+                <?= $this->render('components/_sidebar')?>
+            </aside>
         </div>
-
     </div>
-</div>
+</section>

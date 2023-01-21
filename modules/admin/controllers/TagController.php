@@ -27,6 +27,27 @@ class TagController extends AppAdminController
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => \yii\filters\AccessControl::className(),
+                    'only' => ['create', 'update', 'delete'],
+                    'rules' => [
+                        // deny all POST requests
+                        [
+                            'allow' => false,
+                            'verbs' => ['POST']
+                        ],
+                        // allow authenticated users
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                $user = \Yii::$app->user->getIdentity();
+                                return $user->isAdmin();
+                            }
+                        ],
+                        // everything else is denied
+                    ],
+                ],
             ]
         );
     }
