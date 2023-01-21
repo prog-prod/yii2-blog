@@ -7,6 +7,8 @@
                 <ul class="list-inline post-meta mb-3">
                     <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/?author=<?=$article->user->id?>"><?= $article->user->username?></a>
                     </li>
+                    <li class="list-inline-item">Перегляди: <?= $article->views?>
+                    </li>
                     <li class="list-inline-item">Дата : <?= \Yii::$app->formatter->asDate($article->createdAt)?></li>
                     <li class="list-inline-item">Категорія : <a href="/?category=<?=$article->category->id?>" class="ml-1"><?=$article->category->name?> </a>
                     </li>
@@ -18,7 +20,9 @@
             </div>
             <div class="col-12 mb-3">
                 <div class="post-slider">
-                    <img src="/images/post/<?= $article->image ?: 'default-post.gif' ?>" class="img-fluid" alt="post-thumb">
+                    <?php foreach($article->getImages() as $image):?>
+                        <img loading="lazy" src="/images/post/<?=$image?>" class="img-fluid" alt="post-thumb">
+                    <?php endforeach;?>
                 </div>
             </div>
             <div class="col-lg-10 mx-auto">

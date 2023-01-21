@@ -78,6 +78,20 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getBgImage()
+    {
+        $images = $this->getImages();
+        return $images[0];
+    }
+
+    public function getImages(): array
+    {
+        $images = explode(',', $this->image);
+        if(strlen($images[0]) === 0) {
+            $images[0] = \Yii::$app->params['default_article_img'];
+        }
+        return $images;
+    }
     public function getShortContent(): string
     {
         return StringHelper::byteSubstr($this->content,0, 255).'...';

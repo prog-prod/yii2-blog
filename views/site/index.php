@@ -11,6 +11,10 @@ $this->title = 'IT Blog Головна сорінка';
                 <?php foreach($articles as $article):?>
                     <?= $this->render('components/_article', compact('article'))?>
                 <?php endforeach;?>
+
+                <?php if(empty($articles)):?>
+                <h4>Статті не знайдено. 	&#129402</h4>
+                <?php endif?>
             </div>
             <aside class="col-lg-4">
                 <?= $this->render('components/_sidebar', compact('categories','tags','latest_articles'))?>

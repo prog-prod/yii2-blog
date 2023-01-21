@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'User',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return "<img width=50 src='/images/post/".($model->image ? $model->image : $this->context->default_article_img)."' >";
+                    return "<img width=100 src='/images/post/".$model->getBgImage()."' >";
                 }
             ],
             'views',
