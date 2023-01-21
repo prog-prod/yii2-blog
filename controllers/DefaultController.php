@@ -38,23 +38,23 @@ class DefaultController extends Controller
     {
 
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']]
+            ['label' => 'Головна', 'url' => ['/site/index']],
+            ['label' => 'Про нас', 'url' => ['/site/about']],
+            ['label' => 'Контакти', 'url' => ['/site/contact']]
         ];
 
         if (\Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Signup', 'url' => ['/register']];
-            $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
+            $menuItems[] = ['label' => 'Реєстрація', 'url' => ['/register']];
+            $menuItems[] = ['label' => 'Вхід', 'url' => ['/login']];
         } else {
              if(\Yii::$app->getUser()->identity->hasAdminPanelAccess()) {
-                 $menuItems[] =  ['label' => 'Admin Panel', 'url' => ['/admin/index']];
+                 $menuItems[] =  ['label' => 'Адмін панель', 'url' => ['/admin/index']];
              }
 
 
             $menuItems[] = '<li class="nav-item">'
                 . Html::beginForm(['/logout'], 'post', ['id' => 'logout']) . Html::endForm()
-                . '<a href="javascript:void(0)" class="nav-link" onclick="$(\'#logout\').submit()">Logout (' . \Yii::$app->user->identity->username . ')</a>'
+                . '<a href="javascript:void(0)" class="nav-link" onclick="$(\'#logout\').submit()">Вихід (' . \Yii::$app->user->identity->username . ')</a>'
                 . '</li>';
         }
 

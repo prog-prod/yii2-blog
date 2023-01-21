@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\StringHelper;
 
 /**
  * This is the model class for table "article".
@@ -76,6 +78,10 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getShortContent(): string
+    {
+        return StringHelper::byteSubstr($this->content,0, 255).'...';
+    }
     /**
      * Gets query for [[Category]].
      *
