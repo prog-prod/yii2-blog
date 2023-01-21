@@ -50,7 +50,8 @@ $config = [
             'rules' => [
                 '' => 'site/index',
                 '<action>' => 'site/<action>',
-                '<module:w+>/<action>' => '<module:admin+>/index/<action>'
+                '<module:w+>/<action>' => '<module:admin+>/index/<action>',
+                'article/<id:\d+>' => 'article/view',
             ],
         ],
     ],

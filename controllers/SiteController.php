@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Article;
+use app\models\Category;
 use app\models\PasswordResetRequestForm;
 use app\models\RegistrationForm;
 use app\models\ResetPasswordForm;
+use app\models\Tag;
 use app\models\User;
 use Yii;
 use yii\base\InvalidParamException;
@@ -66,7 +69,11 @@ class SiteController extends DefaultController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $articles = Article::find()->orderBy(['views' => SORT_DESC])->limit(7)->all();
+        $latest_articles = Article::find()->orderBy(['id' => SORT_DESC])->limit(3)->all();
+        $tags = Tag::find()->all();
+        $categories = Category::find()->all();
+        return $this->render('index', compact('articles','categories', 'tags', 'latest_articles'));
     }
 
     /**

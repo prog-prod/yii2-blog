@@ -38,7 +38,7 @@ class CommentSearch extends Comment
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $user_id)
+    public function search($params, $user_id = null)
     {
         $query = Comment::find();
 
