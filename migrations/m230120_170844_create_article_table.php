@@ -12,6 +12,12 @@ class m230120_170844_create_article_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('{{%article}}', [
             'id' => $this->primaryKey(),
             'category_id' => $this->integer()->notNull(),
@@ -22,7 +28,7 @@ class m230120_170844_create_article_table extends Migration
             'image' => $this->string()->null(),
             'views' => $this->integer()->notNull()->defaultValue(0),
             'createdAt' => $this->dateTime()->notNull(),
-        ]);
+        ], $tableOptions);
 
         // create index for column `topic_id`
         $this->createIndex(

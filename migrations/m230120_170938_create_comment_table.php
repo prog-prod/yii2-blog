@@ -12,6 +12,10 @@ class m230120_170938_create_comment_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
         $this->createTable('{{%comment}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
@@ -20,7 +24,7 @@ class m230120_170938_create_comment_table extends Migration
             'text' => $this->text()->null(),
             'datetime' => $this->dateTime()->notNull(),
             'delete' => $this->boolean(),
-        ]);
+        ],  $tableOptions);
 
         // create index for column `user_id`
         $this->createIndex(
