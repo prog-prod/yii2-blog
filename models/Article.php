@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use Yii;
-use yii\helpers\ArrayHelper;
+use yii\base\InvalidConfigException;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\StringHelper;
 
 /**
@@ -17,7 +17,8 @@ use yii\helpers\StringHelper;
  * @property string|null $content
  * @property string|null $image
  * @property int $views
- * @property string $createdAt
+ * @property int $created_at
+ * @property int $updated_at
  *
  * @property Category $category
  * @property Comment[] $comments
@@ -27,14 +28,22 @@ use yii\helpers\StringHelper;
 class Article extends \yii\db\ActiveRecord
 {
 
-    public function beforeSave($insert) {
+    /**
+     * @return array
+     * @throws InvalidConfigException
+     */
+    public function behaviors(): array
+    {
         $formatter = \Yii::$app->formatter;
 
-        if ($this->isNewRecord) {
-            $this->createdAt = $formatter->asDatetime('now','Y-MM-dd H:mm:ss');
-        }
-
-        return parent::beforeSave($insert);
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' =>  $formatter->asDatetime('now','Y-MM-dd H:mm:ss')
+            ]
+        ];
     }
 
     /**

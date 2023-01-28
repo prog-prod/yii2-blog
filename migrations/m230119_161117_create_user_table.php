@@ -26,11 +26,13 @@ class m230119_161117_create_user_table extends Migration
             'first_name' => $this->string()->null(),
             'last_name' => $this->string()->null(),
             'email' => $this->string()->notNull()->unique(),
+            'role' => $this->smallInteger()->notNull()->defaultValue(1),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique()->unique(),
+            'about_me' => $this->text()->null(),
             'avatar' => $this->string()->null(),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->dateTime()->notNull(),
+            'updated_at' => $this->dateTime()->notNull(),
         ], $tableOptions);
     }
 

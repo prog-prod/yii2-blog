@@ -14,6 +14,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -226,4 +227,15 @@ class SiteController extends DefaultController
     {
         return $this->render('about');
     }
+
+    /**
+     * Displays terms&conditions page.
+     *
+     * @return string
+     */
+    public function actionTerms(): string
+    {
+        return $this->render('terms');
+    }
+
 }

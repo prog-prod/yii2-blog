@@ -14,11 +14,11 @@ class CommentSearch extends Comment
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['id', 'user_id', 'article_id', 'comment_id', 'delete'], 'integer'],
-            [['text', 'datetime'], 'safe'],
+            [['id', 'user_id', 'article_id', 'comment_id', 'viewed'], 'integer'],
+            [['text', 'created_at'], 'safe'],
         ];
     }
 
@@ -66,8 +66,7 @@ class CommentSearch extends Comment
             'user_id' => $this->user_id,
             'article_id' => $this->article_id,
             'comment_id' => $this->comment_id,
-            'datetime' => $this->datetime,
-            'delete' => $this->delete,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'text', $this->text]);

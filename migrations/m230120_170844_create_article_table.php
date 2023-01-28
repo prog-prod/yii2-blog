@@ -21,7 +21,8 @@ class m230120_170844_create_article_table extends Migration
             'content' => $this->text()->null(),
             'image' => $this->string()->null(),
             'views' => $this->integer()->notNull()->defaultValue(0),
-            'createdAt' => $this->dateTime()->notNull(),
+            'created_at' => $this->dateTime()->notNull(),
+            'updated_at' => $this->dateTime()->notNull(),
         ]);
 
         // create index for column `topic_id`

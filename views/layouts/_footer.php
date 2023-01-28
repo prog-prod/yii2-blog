@@ -23,11 +23,11 @@ use yii\helpers\Url;
             </div>
 
             <div class="col-lg-2 col-md-3 col-6 mb-4">
-                <h6 class="mb-4">Меню</h6>
+                <h6 class="mb-4">Додаткове Меню</h6>
                 <ul class="list-unstyled footer-list">
-                    <?php foreach ($this->context->menu_items as $menu_item):?>
+                    <?php foreach ($this->context->footer_items as $menu_item):?>
                         <?php if(isset($menu_item['label'])):?>
-                            <li><a href="/<?=join(' ',$menu_item['url'])?>"><?= $menu_item['label']?></a></li>
+                            <li><a href="<?=Url::to($menu_item['url'][0])?>"><?= $menu_item['label']?></a></li>
                         <?php else:?>
                             <?=$menu_item?>
                         <?php endif?>
@@ -40,7 +40,7 @@ use yii\helpers\Url;
                 <ul class="list-unstyled footer-list">
                     <?php foreach ($this->context->social_networks as $social_network):?>
                         <?php if(isset($social_network['label'])):?>
-                            <li><a href="/<?=join(' ',$social_network['url'])?>"><?= $social_network['label']?></a></li>
+                            <li><a href="<?=Url::to($social_network['url'][0])?>"><?= $social_network['label']?></a></li>
                         <?php else:?>
                             <?=$social_network?>
                         <?php endif?>

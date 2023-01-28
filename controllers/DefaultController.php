@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\Controller;
 
 class DefaultController extends Controller
 {
     public array $menu_items = [];
+    public array $footer_items = [];
     public array $social_networks = [];
     public string $blog_name;
     public string $blog_desc;
@@ -16,6 +18,7 @@ class DefaultController extends Controller
     {
         parent::__construct($id, $module, $config);
         $this->menu_items = $this->getMenuItems();
+        $this->footer_items = $this->getFooterMenuItems();
         $this->social_networks = $this->getSocialNetworks();
         $this->blog_name = \Yii::$app->params['blog_name'];
         $this->blog_desc = \Yii::$app->params['blog_desc'];
@@ -34,13 +37,20 @@ class DefaultController extends Controller
             ],
         ];
     }
+
+    public function getFooterMenuItems() {
+        return ArrayHelper::merge($this->menu_items, [
+            ['label' => 'Правила та умови', 'url' => ['/terms']],
+        ]);
+    }
+
     public function getMenuItems(): array
     {
 
         $menuItems = [
-            ['label' => 'Головна', 'url' => ['/site/index']],
-            ['label' => 'Про нас', 'url' => ['/site/about']],
-            ['label' => 'Контакти', 'url' => ['/site/contact']]
+            ['label' => 'Головна', 'url' => ['/']],
+            ['label' => 'Про нас', 'url' => ['/about']],
+            ['label' => 'Контакти', 'url' => ['/contact']]
         ];
 
         if (\Yii::$app->user->isGuest) {

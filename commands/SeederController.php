@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace app\commands;
 
@@ -11,6 +11,8 @@ use app\models\User;
 use Faker\Factory;
 use Faker\Generator;
 use Faker\Provider\en_US\Text;
+use Throwable;
+use yii\base\Exception;
 use yii\console\Controller;
 use yii\console\ExitCode;
 /**
@@ -21,10 +23,29 @@ use yii\console\ExitCode;
 class SeederController extends Controller
 {
 
+    /**
+     * @var Generator
+     */
     private Generator $faker;
+
+    /**
+     * @var array
+     */
     private array $users = [];
+
+    /**
+     * @var int
+     */
     private int $minArticlesNumber = 10;
+
+    /**
+     * @var int
+     */
     private int $maxArticleNumber = 40;
+
+    /**
+     * @var array|\string[][]
+     */
     private array $authors = [
         [
             'username' => 'author 1',
@@ -35,6 +56,9 @@ class SeederController extends Controller
         ],
     ];
 
+    /**
+     * @var array|string[]
+     */
     private array $post_images = [
         'post-1.jpg',
         'post-2.jpg',
@@ -47,6 +71,10 @@ class SeederController extends Controller
         'post-9.jpg',
         'post-10.jpg',
     ];
+
+    /**
+     * @var array|string[]
+     */
     private array $categories = [
         'Кібербезпека',
         'Електричні новини',
@@ -62,6 +90,9 @@ class SeederController extends Controller
         'Вирішення проблем',
     ];
 
+    /**
+     * @var array|string[]
+     */
     private array $tags = [
         'технічні новини',
         'нова технологія',
@@ -81,6 +112,11 @@ class SeederController extends Controller
         'технічні оновлення',
     ];
 
+    /**
+     * @param $id
+     * @param $module
+     * @param $config
+     */
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config);
@@ -95,30 +131,32 @@ class SeederController extends Controller
      */
     public function actionSeedData(): int
     {
-
-        if(empty(User::findAll(['role' => User::ROLE_ADMIN]))){
+        if (empty(User::findAll(['role' => User::ROLE_ADMIN]))) {
             $this->print('generating admin...');
             $this->actionCreateAdmin();
         }
-        if(empty(Category::find()->all())){
+
+        if (empty(Category::find()->all())) {
             $this->print('generating categories...');
             $this->generateCategories();
         }
-        if(empty(Tag::find()->all())){
+
+        if (empty(Tag::find()->all())) {
             $this->print('generating tags...');
             $this->generateTags();
         }
-        if(empty(Article::find()->all())){
+
+        if (empty(Article::find()->all())) {
             $this->print('generating articles...');
             $this->generateArticles();
         }
 
-        if(empty(TagArticle::find()->all())){
+        if (empty(TagArticle::find()->all())) {
             $this->print('generating tag articles...');
             $this->generateArticlesTags();
         }
 
-        if(empty(Comment::find()->all())){
+        if (empty(Comment::find()->all())) {
             $this->print('generating comments...');
             $this->generateComments();
         }
@@ -126,32 +164,46 @@ class SeederController extends Controller
         return ExitCode::OK;
     }
 
-    private function print($message) {
-        echo  PHP_EOL."\033[32m$message\033[0m";
+    /**
+     * @param $message
+     * @return void
+     */
+    private function print($message)
+    {
+        echo PHP_EOL . "\033[32m$message\033[0m";
     }
 
+    /**
+     * @return void
+     * @throws Exception
+     */
     private function generateArticles()
     {
         $categories = Category::find()->all();
         $authors = User::findAll(['role' => User::ROLE_AUTHOR]);
+        $countArticles = $this->faker->numberBetween($this->minArticlesNumber, $this->maxArticleNumber);
+
         if (empty($authors)) {
             $this->createAuthors();
             $authors = User::findAll(['role' => User::ROLE_AUTHOR]);
         }
-        $countArticles = $this->faker->numberBetween($this->minArticlesNumber,$this->maxArticleNumber);
-       for ($i=0;$i<$countArticles;$i++) {
-           $article = new Article();
-           $article->user_id = $authors[array_rand($authors)]->id;
-           $article->image = join(',', $this->faker->randomElements($this->post_images,$this->faker->numberBetween(0,4)));
-           $article->category_id = $categories[array_rand($categories)]->id;
-           $article->title = $this->faker->sentence($this->faker->numberBetween(3,7));
-           $article->content = $this->faker->text(1000);
-           $article->createdAt = date("Y-m-d H:i:s");
-           $article->save(false);
-       }
+        for ($i = 0; $i < $countArticles; $i++) {
+            $article = new Article();
+            $article->user_id = $authors[array_rand($authors)]->id;
+            $article->image = join(',', $this->faker->randomElements($this->post_images, $this->faker->numberBetween(0, 4)));
+            $article->category_id = $categories[array_rand($categories)]->id;
+            $article->title = $this->faker->sentence($this->faker->numberBetween(3, 7));
+            $article->content = $this->faker->text(1000);
+            $article->save(false);
+        }
 
     }
 
+    /**
+     * @return void
+     * @throws Throwable
+     * @throws \yii\db\Exception
+     */
     private function generateCategories()
     {
         $transaction = \Yii::$app->db->beginTransaction();
@@ -162,13 +214,17 @@ class SeederController extends Controller
                 $cat->save(false);
             }
             $transaction->commit();
-        } catch (\Throwable $ex) {
+        } catch (Throwable $ex) {
             $transaction->rollBack();
             throw $ex;
         }
-
     }
 
+    /**
+     * @return void
+     * @throws Throwable
+     * @throws \yii\db\Exception
+     */
     private function generateTags()
     {
         $transaction = \Yii::$app->db->beginTransaction();
@@ -179,7 +235,7 @@ class SeederController extends Controller
                 $t->save(false);
             }
             $transaction->commit();
-        } catch (\Throwable $ex) {
+        } catch (Throwable $ex) {
             $transaction->rollBack();
             throw $ex;
         }
@@ -202,32 +258,22 @@ class SeederController extends Controller
         return $this->users;
     }
 
-    private function initActiveRecords($records, $classname): array
-    {
-        $return = [];
-        for ($i = 0; $i < count($records); $i++) {
-            $return[] = new $classname();
-        }
-
-        return $return;
-    }
-
     /**
      * This command create the admin user
      * @return int Exit code
+     * @throws Exception
      */
     public function actionCreateAdmin(): int
     {
-        $passw = \Yii::$app->params['adminPassword'];
+        $password = \Yii::$app->params['adminPassword'];
         $username = \Yii::$app->params['adminUsername'];
         $email = \Yii::$app->params['adminEmail'];
 
-        // create admin user
         $user = new User();
         $user->username = $username;
         $user->email = $email;
         $user->role = User::ROLE_ADMIN;
-        $user->setPassword($passw);
+        $user->setPassword($password);
         $user->generateAuthKey();
 
         if ($user->save()) {
@@ -235,45 +281,50 @@ class SeederController extends Controller
         }
 
         return ExitCode::NOUSER;
-
     }
 
-    private function createAuthors(): int
+    /**
+     * @throws Exception
+     */
+    private function createAuthors(): void
     {
-        $passw = \Yii::$app->params['author_password'];
+        $password = \Yii::$app->params['author_password'];
 
         foreach ($this->authors as $author) {
-            // create admin user
             $user = new User();
             $user->username = $author['username'];
             $user->email = $author['email'];
             $user->role = User::ROLE_AUTHOR;
-            $user->setPassword($passw);
+            $user->setPassword($password);
             $user->generateAuthKey();
 
             $user->save(false);
         }
-
-        return ExitCode::OK;
-
     }
 
+    /**
+     * @return void
+     */
     private function generateArticlesTags()
     {
         $tags = Tag::find()->all();
         $articles = Article::find()->all();
 
         foreach ($articles as $article) {
-            foreach ($this->faker->randomElements($tags,3) as $tag) {
+            foreach ($this->faker->randomElements($tags, 3) as $tag) {
                 $tag->link('articles', $article);
             }
         }
     }
 
-    private function generateComments(){
+    /**
+     * @return void
+     */
+    private function generateComments()
+    {
 
         $articles = Article::find()->all();
-        $articlesWithComments = $this->faker->randomElements($articles,$this->faker->numberBetween($this->minArticlesNumber, count($articles)));
+        $articlesWithComments = $this->faker->randomElements($articles, $this->faker->numberBetween($this->minArticlesNumber, count($articles)));
         $this->setUsers(User::find()->all());
 
         foreach ($articlesWithComments as $article) {
@@ -282,25 +333,28 @@ class SeederController extends Controller
         }
     }
 
+    /**
+     * @param $user
+     * @param $article
+     * @return array|mixed|null
+     */
     private function generateComment($user, $article)
     {
-            $comment = new Comment();
-            $comment->user_id = $user->id;
-            $comment->article_id = $article->id;
-            $generateAnswer = $this->faker->numberBetween(0,1);
-            if($generateAnswer){
-                $user = $this->faker->randomElement($this->getUsers());
-                $comment->comment_id = $this->generateComment($user, $article);
-            }
+        $comment = new Comment();
+        $comment->user_id = $user->id;
+        $comment->article_id = $article->id;
+        $generateAnswer = $this->faker->numberBetween(0, 1);
+        if ($generateAnswer) {
+            $user = $this->faker->randomElement($this->getUsers());
+            $comment->comment_id = $this->generateComment($user, $article);
+        }
 
-            $comment->text = $this->faker->sentences($this->faker->numberBetween(3,10),true);
-            $comment->datetime = $this->faker->dateTime()->format('Y-m-d H:i:s');
+        $comment->text = $this->faker->sentences($this->faker->numberBetween(3, 10), true);
 
-            if($comment->save(false)) {
-                return $comment->getPrimaryKey();
-            }
+        if ($comment->save(false)) {
+            return $comment->getPrimaryKey();
+        }
 
-            return null;
+        return null;
     }
-
 }

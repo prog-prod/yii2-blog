@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "comment".
@@ -12,8 +14,9 @@ use Yii;
  * @property int $article_id
  * @property int $comment_id
  * @property string|null $text
- * @property string $datetime
- * @property int|null $delete
+ * @property int|null $viewed
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property Article $article
  * @property Comment $comment
@@ -28,6 +31,24 @@ class Comment extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'comment';
+    }
+
+    /**
+     * @return array
+     * @throws InvalidConfigException
+     */
+    public function behaviors(): array
+    {
+        $formatter = \Yii::$app->formatter;
+
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' =>  $formatter->asDatetime('now','Y-MM-dd H:mm:ss')
+            ]
+        ];
     }
 
     /**

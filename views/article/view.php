@@ -9,7 +9,7 @@
                     </li>
                     <li class="list-inline-item">Перегляди: <?= $article->views?>
                     </li>
-                    <li class="list-inline-item">Дата : <?= \Yii::$app->formatter->asDate($article->createdAt)?></li>
+                    <li class="list-inline-item">Дата : <?= \Yii::$app->formatter->asDate($article->created_at)?></li>
                     <li class="list-inline-item">Категорія : <a href="/?category=<?=$article->category->id?>" class="ml-1"><?=$article->category->name?> </a>
                     </li>
                     <li class="list-inline-item">Теги :   <?php foreach($article->tags as $key => $tag):?>

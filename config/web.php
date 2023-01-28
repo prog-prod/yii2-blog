@@ -52,6 +52,7 @@ $config = [
                 '<action>' => 'site/<action>',
                 '<module:w+>/<action>' => '<module:admin+>/index/<action>',
                 'article/<id:\d+>' => 'article/view',
+                'author/<id:\d+>' => 'author/view',
             ],
         ],
     ],
